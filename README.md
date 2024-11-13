@@ -31,7 +31,7 @@ docker build -t discord-bot-endpoint .
 ```bash
 docker run -d \
   --name discord-bot \
-  -p 5551:80 \
+  -p PORT:80 \
   -e DISCORD_TOKEN=your-token-here \
   isolyth/discord-bot-endpoint:latest
 ```
@@ -48,7 +48,7 @@ services:
     environment:
       - DISCORD_TOKEN=your-token-here
     ports:
-      - "5551:80"
+      - "PORT:80" //Change PORT to whatever port you would this to be accessible at
     restart: unless-stopped
 ```
 
@@ -72,7 +72,7 @@ dotnet run
 ## API Documentation
 
 ### Endpoint Details
-- **URL**: `http://localhost:5551`
+- **URL**: `http://localhost:PORT`
 - **Method**: POST
 - **Content-Type**: application/json
 
@@ -107,7 +107,7 @@ dotnet run
 
 #### Sending a Simple Message
 ```bash
-curl -X POST http://localhost:5551 \
+curl -X POST http://localhost:PORT \
   -H "Content-Type: application/json" \
   -d '{
     "target": "user",
@@ -118,7 +118,7 @@ curl -X POST http://localhost:5551 \
 
 #### Sending an Embed Message
 ```bash
-curl -X POST http://localhost:5551 \
+curl -X POST http://localhost:PORT \
   -H "Content-Type: application/json" \
   -d '{
     "target": "user",
