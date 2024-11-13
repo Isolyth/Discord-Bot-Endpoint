@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    image: isolyth/discord-bot-endpoint:latest
+    container_name: discord-bot
+    environment:
+      - DISCORD_TOKEN=token
+    ports:
+      - "5551:80"
+    restart: unless-stopped
