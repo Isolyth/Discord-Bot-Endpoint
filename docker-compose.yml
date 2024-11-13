@@ -3,6 +3,7 @@ version: '3.8'
 services:
   discord-bot:
     image: isolyth/discord-bot-endpoint:latest
+    platform: ${TARGETPLATFORM:-linux/amd64}
     container_name: discord-bot
     environment:
       - DISCORD_TOKEN=token
