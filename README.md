@@ -182,4 +182,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Acknowledgments
 
-This program has sections written by LLM. The code has been tested and verified to work (On my machine anyway). As always, excercise caution where LLMs are involed and don't rely on this program as your final line of knowing-about-things-happening.
+This program has sections written by LLM. The code has been tested and verified to work (On my machine anyway). As always, excercise caution where LLMs are involved and don't rely on this program as your final line of knowing-about-things-happening.
