@@ -171,6 +171,11 @@ The repository includes CI/CD workflows that:
 4. Push to your fork
 5. Create a Pull Request
 
+### Useful things you can help with
+
+1. I don't have much experience with docker, if you know of a way to make the image smaller, that would be great! The 80mb download isn't ideal
+2. Test it! Make sure it works on your machines too!
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
