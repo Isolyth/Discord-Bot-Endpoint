@@ -9,10 +9,23 @@ A .NET-based HTTP endpoint that allows other programs to send messages through a
 - Simple HTTP POST interface
 - Docker support for easy deployment
 
-## Quick Start
+## Getting Started
 
+### Prerequisites
+
+- Docker (optional, for containerized deployment)
+- Discord bot token
+- .NET 8.0 SDK (for local development)
+
+### Docker Deployment
+
+1. Build the image:
 ```bash
-# Pull and run with Docker
+docker build -t discord-bot-endpoint .
+```
+
+2. Run the container:
+```bash
 docker run -d \
   --name discord-bot \
   -p 5551:80 \
@@ -20,12 +33,11 @@ docker run -d \
   isolyth/discord-bot-endpoint:latest
 ```
 
-## Docker Compose
+### Docker Compose Deployment
 
 1. Create a docker-compose.yml:
 ```yaml
 version: '3.8'
-
 services:
   discord-bot:
     image: isolyth/discord-bot-endpoint:latest
@@ -42,34 +54,44 @@ services:
 docker-compose up -d
 ```
 
+### Local Development
+
+1. Restore dependencies:
+```bash
+dotnet restore
+```
+
+2. Run the application:
+```bash
+dotnet run
+```
+
 ## API Documentation
 
 ### Endpoint Details
-
 - **URL**: `http://localhost:5551`
 - **Method**: POST
 - **Content-Type**: application/json
 
 ### Request Schema
-
 ```json
 {
-    "target": "user",           // Required: Currently only "user" is supported
-    "userId": 123456789,        // Required: Discord user ID (numeric)
-    "message": "Hello world",   // Optional: Plain text message
-    "embed": {                  // Optional: Rich embed object
-        "title": "Title here",
-        "description": "Main content here",
-        "color": 4144959,      // Decimal color value
-        "timestamp": "2024-01-24T11:21:00Z", // ISO 8601 timestamp
-        "fields": [
-            {
-                "name": "Field Title",
-                "value": "Field content",
-                "inline": false
-            }
-        ]
-    }
+  "target": "user",  // Required: Currently only "user" is supported
+  "userId": 123456789,  // Required: Discord user ID (numeric)
+  "message": "Hello world",  // Optional: Plain text message
+  "embed": {  // Optional: Rich embed object
+    "title": "Title here",
+    "description": "Main content here",
+    "color": 4144959,  // Decimal color value
+    "timestamp": "2024-01-24T11:21:00Z",  // ISO 8601 timestamp
+    "fields": [
+      {
+        "name": "Field Title",
+        "value": "Field content",
+        "inline": false
+      }
+    ]
+  }
 }
 ```
 
@@ -78,10 +100,9 @@ docker-compose up -d
 - `userId` must be a numeric value (not a string)
 - All embed fields are optional
 
-### Examples
+### Example Requests
 
 #### Sending a Simple Message
-
 ```bash
 curl -X POST http://localhost:5551 \
   -H "Content-Type: application/json" \
@@ -93,7 +114,6 @@ curl -X POST http://localhost:5551 \
 ```
 
 #### Sending an Embed Message
-
 ```bash
 curl -X POST http://localhost:5551 \
   -H "Content-Type: application/json" \
@@ -117,7 +137,6 @@ curl -X POST http://localhost:5551 \
 ```
 
 ### Response Codes
-
 - **200**: Message sent successfully
 - **400**: Invalid request format or parameters
 - **404**: User not found
@@ -126,27 +145,36 @@ curl -X POST http://localhost:5551 \
 - **503**: Discord client is not ready
 
 ### Response Format
-
 ```json
 {
-    "message": "Status message here"
+  "message": "Status message here"
 }
 ```
 
-## Building from Source
+## Configuration Options
 
-If you want to build the image yourself:
+### Environment Variables
+- `DISCORD_TOKEN`: Your Discord bot token (required)
 
-1. Clone the repository
-2. Build the Docker image:
-```bash
-docker build -t discord-bot-endpoint .
-```
+## GitHub Actions
+
+The repository includes CI/CD workflows that:
+1. Build and test the application
+2. Create and publish Docker images
+3. Run on pushes to main and pull requests
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your fork
+5. Create a Pull Request
 
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
+## Acknowledgments
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This program has sections written by LLM. The code has been tested and verified to work (On my machine anyway). As always, excercise caution where LLMs are involed and don't rely on this program as your final line of knowing-about-things-happening.
