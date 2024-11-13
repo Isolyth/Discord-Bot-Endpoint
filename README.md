@@ -1,3 +1,6 @@
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/isolyth/Discord-Bot-Endpoint/.github%2Fworkflows%2Fdocker-publish.yml) ![Docker Pulls](https://img.shields.io/docker/pulls/isolyth/discord-bot-endpoint) ![GitHub License](https://img.shields.io/github/license/isolyth/discord-bot-endpoint)
+
+
 # Discord Bot Endpoint
 
 A .NET-based HTTP endpoint that allows other programs to send messages through a Discord bot to users.
